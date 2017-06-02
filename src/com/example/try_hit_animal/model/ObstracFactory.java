@@ -48,7 +48,7 @@ public class ObstracFactory extends Layer{
 //            apple.anchorPoint = CGPointMake(0, 0)
 //            apple.zPosition = 40
 //            apple.position  = CGPointMake(sceneWidth+apple.frame.width , theY + 150)
-            apple.setPosition(sceneWidth+apple.w , theY - appleTexture.getHeight());
+            apple.setPosition(sceneWidth+apple.getWidth(), theY - appleTexture.getHeight());
             arrApple.add(apple);
             this.addChild(apple);
         }

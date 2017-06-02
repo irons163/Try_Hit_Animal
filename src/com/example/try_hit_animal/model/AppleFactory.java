@@ -49,7 +49,7 @@ public class AppleFactory extends Layer {
 //            apple.anchorPoint = CGPointMake(0, 0)
 //            apple.zPosition = 40
 //            apple.position  = CGPointMake(sceneWidth+apple.frame.width , theY + 150)
-            apple.setPosition(sceneWidth+apple.w , theY - 150);
+            apple.setPosition(sceneWidth+apple.getWidth() , theY - 150);
             arrApple.add(apple);
             this.addChild(apple);
         }

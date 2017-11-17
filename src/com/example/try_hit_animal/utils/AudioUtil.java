@@ -202,6 +202,70 @@ public class AudioUtil {
     public static void stopBackgroundMusic(){
         pauseMusic();
     }
+    
+    AVAudioPlayer * backgroundMusicPlayer;
+
+    public static void preparePlayBackgroundMusic(String filename) {
+        NSURL * url = 
+        
+        if (url == nil) {
+            NSLog(@"Could not find file:%@",filename);
+            return;
+        }
+        
+        NSError * error;
+        backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        
+        if (backgroundMusicPlayer == nil) {
+            NSLog(@"Could not create audio player:%@",error);
+            return;
+        }
+        
+        backgroundMusicPlayer.numberOfLoops = -1;
+        [backgroundMusicPlayer prepareToPlay];
+    }
+
+    +(void)playBackgroundMusic:(NSString*)filename {
+        NSURL * url = [[NSBundle mainBundle] URLForResource:filename withExtension:nil];
+        
+        if (url == nil) {
+            NSLog(@"Could not find file:%@",filename);
+            return;
+        }
+        
+        NSError * error;
+        backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        
+        if (backgroundMusicPlayer == nil) {
+            NSLog(@"Could not create audio player:%@",error);
+            return;
+        }
+        
+        backgroundMusicPlayer.numberOfLoops = -1;
+        [backgroundMusicPlayer prepareToPlay];
+        [backgroundMusicPlayer play];
+        
+//        var error: NSError? = nil backgroundMusicPlayer =
+//        AVAudioPlayer(contentsOfURL: url, error: &error) if backgroundMusicPlayer == nil {
+//            println("Could not create audio player: \(error!)")
+//            return
+        }
+
+    +(void)backgroundMusicPlayerStop{
+        [backgroundMusicPlayer stop];
+    }
+
+    +(void)backgroundMusicPlayerPause{
+        [backgroundMusicPlayer pause];
+    }
+
+    +(void)backgroundMusicPlayerPlay{
+        [backgroundMusicPlayer play];
+    }
+
+    +(BOOL)isBackgroundMusicPlayerPlaying{
+        return [backgroundMusicPlayer isPlaying];
+    }
 
 }
 
